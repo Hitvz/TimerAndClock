@@ -24,5 +24,17 @@ namespace TimerAndClock
         {
             InitializeComponent();
         }
+
+        private void App_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            timeCanvas.Width = app.ActualWidth;
+
+            timeCanvas.Height = app.ActualHeight;
+           
+            Canvas.SetTop(timer, timeCanvas.Height/2.0-timer.ActualHeight/2.0 - SystemParameters.CaptionHeight+2);
+
+            Canvas.SetLeft(timer, timeCanvas.Width/2 - timer.ActualWidth / 2.0 - 7.5);
+
+        }
     }
 }
