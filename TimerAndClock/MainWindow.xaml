@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimerAndClock"
         mc:Ignorable="d"
-        Title="MainWindow" Width="800" Height="400" SizeChanged="App_SizeChanged" Loaded="App_Loaded">
+        Title="MainWindow" Width="800" Height="400" SizeChanged="App_SizeChanged" Loaded="App_Loaded" PreviewKeyDown="App_PreviewKeyDown">
     <Canvas x:Name="timeCanvas" HorizontalAlignment="Left" Height="378" VerticalAlignment="Top" Width="790" Background="Black" >
-        <TextBlock x:Name="timer" Text="00:00" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="300" Foreground="White" Canvas.Left="10" Background="#FFF50909"/>
+        <TextBlock x:Name="timer" Text="00:00" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="300" Foreground="White" Canvas.Left="10" Background="Black" SizeChanged="Timer_SizeChanged"/>
 
     </Canvas>
 </Window>
