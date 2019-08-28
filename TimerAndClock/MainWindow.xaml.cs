@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,8 @@ namespace TimerAndClock
 
         private Key preKey;
 
+        private bool isClock = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -55,12 +58,30 @@ namespace TimerAndClock
 
         }
 
+        private int second = -1;
+
+        private int min = -1;
+
+        private int hour = -1;
+
         private void timer_Tick(object sender, EventArgs e)
         {
-
-            timer.Text = DateTime.Now.ToShortTimeString() ;
-            //Console.WriteLine(DateTime.Now.ToLongTimeString());
-            
+            if (isClock)
+            {
+                timer.Text = DateTime.Now.ToShortTimeString();
+            }
+            else
+            {
+                if (min == -1)
+                {
+                    second = 60 - DateTime.Now.Second;
+                    min = 59 - DateTime.Now.Minute;
+                    hour = 23 - DateTime.Now.Hour;
+                }
+                TimeSpan targetTime = new TimeSpan(DateTime.Now.Hour+hour, DateTime.Now.Minute+min, DateTime.Now.Second + second);
+                Console.WriteLine(DateTime.Now.ToLongTimeString()+" "+ targetTime.ToString());
+                timer.Text = targetTime.ToString(@"hh\:mm");
+            }
         }
 
         private void App_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -101,6 +122,15 @@ namespace TimerAndClock
                 this.Height = preHeight;
                 this.Top = preTop;
                 this.Left = preLeft;
+            }else if (e.Key == Key.F1)
+            {
+                this.isClock = !this.isClock;
+                if (this.isClock)
+                {
+                    second = -1;
+                    min = -1;
+                    hour = -1;
+                }
             }
             resizeText();
         }
