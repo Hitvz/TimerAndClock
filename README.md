@@ -1,1 +1,1 @@
-# C-Users-Hitvz-source-repos-TimerAndClock-TimerAndClock.sln
+none
